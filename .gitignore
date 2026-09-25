@@ -1,0 +1,8 @@
+# Outils de visualisation locale : inutiles en ligne
+LANCER LE SITE.cmd
+serveur.ps1
+
+# Fichiers systeme Windows / macOS
+Thumbs.db
+desktop.ini
+.DS_Store
