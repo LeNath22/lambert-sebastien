@@ -1,0 +1,10 @@
+# Site de Lambert Sébastien SRL — aménagement de salle de bain, Engis (Belgique)
+# Tout le contenu est public et destiné à être trouvé.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://lenath22.github.io/lambert-sebastien/sitemap.xml
+
+# Description du site a destination des assistants IA
+# https://lenath22.github.io/lambert-sebastien/llms.txt

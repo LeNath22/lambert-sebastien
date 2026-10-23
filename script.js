@@ -104,31 +104,36 @@
     card.addEventListener("click", function () { open(card); });
   });
 
-  document.getElementById("lbClose").addEventListener("click", close);
-  document.getElementById("lbPrev").addEventListener("click", function () { step(-1); });
-  document.getElementById("lbNext").addEventListener("click", function () { step(1); });
+  /* Ce script est partagé avec les pages juridiques, qui n'ont ni galerie ni
+     visionneuse. Sans cette garde, getElementById renvoie null et l'erreur
+     interrompt tout le reste du script — menu, thème et formulaires compris. */
+  if (lb) {
+    document.getElementById("lbClose").addEventListener("click", close);
+    document.getElementById("lbPrev").addEventListener("click", function () { step(-1); });
+    document.getElementById("lbNext").addEventListener("click", function () { step(1); });
 
-  /* Clic sur le fond (hors image et hors boutons) = fermeture */
-  lb.addEventListener("click", function (e) {
-    if (e.target === lb) { close(); }
-  });
+    /* Clic sur le fond (hors image et hors boutons) = fermeture */
+    lb.addEventListener("click", function (e) {
+      if (e.target === lb) { close(); }
+    });
 
-  document.addEventListener("keydown", function (e) {
-    if (!lb.classList.contains("is-open")) { return; }
-    if (e.key === "Escape")     { close(); }
-    if (e.key === "ArrowLeft")  { step(-1); }
-    if (e.key === "ArrowRight") { step(1); }
-  });
+    document.addEventListener("keydown", function (e) {
+      if (!lb.classList.contains("is-open")) { return; }
+      if (e.key === "Escape")     { close(); }
+      if (e.key === "ArrowLeft")  { step(-1); }
+      if (e.key === "ArrowRight") { step(1); }
+    });
 
-  /* Balayage tactile */
-  var startX = null;
-  lb.addEventListener("touchstart", function (e) { startX = e.touches[0].clientX; }, { passive: true });
-  lb.addEventListener("touchend", function (e) {
-    if (startX === null) { return; }
-    var dx = e.changedTouches[0].clientX - startX;
-    if (Math.abs(dx) > 50) { step(dx < 0 ? 1 : -1); }
-    startX = null;
-  }, { passive: true });
+    /* Balayage tactile */
+    var startX = null;
+    lb.addEventListener("touchstart", function (e) { startX = e.touches[0].clientX; }, { passive: true });
+    lb.addEventListener("touchend", function (e) {
+      if (startX === null) { return; }
+      var dx = e.changedTouches[0].clientX - startX;
+      if (Math.abs(dx) > 50) { step(dx < 0 ? 1 : -1); }
+      startX = null;
+    }, { passive: true });
+  }
 
   /* ------------------------------------------------ formulaire de devis -- */
   var form = document.getElementById("quoteForm");
@@ -200,6 +205,7 @@
   if (nl) {
     var nlMsg = document.getElementById("nlMsg");
     var nlEmail = document.getElementById("nlEmail");
+    var nlConsent = document.getElementById("nlConsent");
 
     nl.addEventListener("submit", function (e) {
       e.preventDefault();
@@ -208,6 +214,15 @@
       if (!value || value.indexOf("@") === -1 || value.indexOf(".") === -1) {
         nlMsg.hidden = false;
         nlMsg.textContent = "Merci d'indiquer une adresse e-mail valide.";
+        return;
+      }
+
+      /* Le consentement conditionne l'envoi : affiché mais non vérifié, il
+         n'aurait aucune valeur juridique. */
+      if (nlConsent && !nlConsent.checked) {
+        nlMsg.hidden = false;
+        nlMsg.textContent = "Merci de cocher la case pour accepter de recevoir nos nouvelles.";
+        nlConsent.focus();
         return;
       }
 

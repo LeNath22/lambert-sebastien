@@ -6,3 +6,7 @@ serveur.ps1
 Thumbs.db
 desktop.ini
 .DS_Store
+
+# Document de travail interne : contient des informations d assurance et des
+# notes qui n ont pas a etre publiques. Le depot GitHub est public.
+A-COMPLETER.md

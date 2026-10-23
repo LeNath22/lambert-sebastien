@@ -25,6 +25,11 @@
   "telephone": "+32497299148",
   "email": "lambertseba73@gmail.com",
   "foundingDate": "2006",
+  "vatID": "BE0812033421",
+  "taxID": "0812033421",
+  "url": "https://lenath22.github.io/lambert-sebastien/",
+  "founder": { "@type": "Person", "name": "Sébastien Lambert" },
+  "knowsLanguage": "fr",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Rue aux Granges 35",
@@ -534,6 +539,11 @@
             <svg class="btn__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </button>
           <p class="quote__hint">Le formulaire ouvre votre logiciel de messagerie avec la demande pré-remplie.</p>
+          <p class="form-privacy">
+            Vos coordonnées servent uniquement à vous rappeler et à établir votre devis.
+            Elles ne sont transmises à personne. Détail et exercice de vos droits dans la
+            <a href="confidentialite.html">politique de confidentialité</a>.
+          </p>
         </form>
       </div>
 
@@ -583,6 +593,17 @@
             <span class="sr-only">S'inscrire</span>
           </button>
         </form>
+
+        <!-- Case de consentement : jamais pré-cochée, le consentement doit être
+             un acte positif de la personne (article 4.11 du RGPD). -->
+        <label class="foot-consent" for="nlConsent">
+          <input type="checkbox" id="nlConsent" name="consentement" required>
+          <span>
+            J'accepte de recevoir occasionnellement des nouvelles des réalisations
+            de Lambert Sébastien SRL. Je peux me désinscrire à tout moment.
+            <a href="confidentialite.html">En savoir plus</a>.
+          </span>
+        </label>
         <p class="foot-msg" id="nlMsg" role="status" hidden></p>
         <div class="foot-glow" aria-hidden="true"></div>
       </div>
@@ -647,7 +668,18 @@
         <img src="assets/logo/logo-lambert-sebastien.png" alt="" aria-hidden="true" width="34" height="34">
         <p>© <span id="year">2026</span> Lambert Sébastien SRL. Tous droits réservés.</p>
       </div>
+      <nav class="foot-legal" aria-label="Informations légales">
+        <a href="mentions-legales.html">Mentions légales</a>
+        <a href="confidentialite.html">Politique de confidentialité</a>
+        <a href="conditions-generales.html">Conditions générales</a>
+        <a href="confidentialite.html#cookies">Cookies</a>
+      </nav>
     </div>
+
+    <p class="foot-identity">
+      Lambert Sébastien SRL — Rue aux Granges 35, 4480 Clermont-sous-Huy (Engis), Belgique
+      · Numéro d'entreprise&nbsp;: 0812.033.421
+    </p>
   </div>
 </footer>
 
